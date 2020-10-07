@@ -1,2 +1,11 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
+<div id="aapl">
+  <script type="text/javascript">
+    $.getJSON('https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=932f4c1c43660ccd560f288eabb05a07
+'             , function(data){
+      var text = 'Price : ${data.price}'
+      $("#aapl").append(text);
+    })
+  </script>
+</div>
