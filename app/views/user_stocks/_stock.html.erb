@@ -1,0 +1,25 @@
+<% stock = Stock.new_lookup(user_stock.ticker) %>
+
+<div class="col" id="stock-<%= user_stock.id %>">
+  <div class="card card-header mb-3">
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>Symbol </th>
+          <td> <%= stock.ticker.upcase %></td>
+        </tr>
+        <tr>
+          <th>Company </th>
+          <td> <%= stock.name %></td>
+        </tr>
+        <tr>
+          <th>Price </th>
+          <td> <%= stock.last_price %></td>
+        </tr>
+      </table>
+      <hr>
+      <%= link_to "Remove Stock", remove_stock_path(user_stock), method: :delete, remote: true,
+          class: 'btn btn-danger', data: {confirm: "Are you sure you want to remove this stock?"} %>
+    </div>
+  </div>
+</div>

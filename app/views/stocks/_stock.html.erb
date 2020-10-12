@@ -1,0 +1,29 @@
+<% unless @stock.nil? %>
+  <div class="card card-header mb-3">
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>Symbol </th>
+          <td> <%= @stock.ticker.upcase %></td>
+        </tr>
+        <tr>
+          <th>Company </th>
+          <td> <%= @stock.name %></td>
+        </tr>
+        <tr>
+          <th>Price </th>
+          <td> <%= @stock.last_price %></td>
+        </tr>
+      </table>
+    </div>
+    <% stocks = current_user.user_stocks.map {|r| r.ticker} %>
+    <% unless stocks.include?(@stock.ticker) %>
+      <div class="card-footer bg-transparent">
+        <%= form_tag save_stock_path(@stock.ticker), remote: true, method: :get do %>
+          <%= submit_tag "Add Stock", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>

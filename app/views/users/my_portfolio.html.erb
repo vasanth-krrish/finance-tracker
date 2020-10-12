@@ -1,0 +1,23 @@
+<div class="search-area">
+  <h3>Search Stocks</h3>
+  <%= form_tag search_stock_path, remote: true, method: :get do %>
+    <div class="form-group row">
+      <div class="col">
+        <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol",
+            autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="stocks-container">
+</div>
+
+<div class="stocks">
+  <h3>My Stocks</h3>
+  <div class="row row-cols-1 row-cols-md-3" id="stocks">
+    <% current_user.user_stocks.each do |stock| %>
+      <%= render "user_stocks/stock", user_stock: stock %>
+    <% end %>
+  </div>
+</div>
